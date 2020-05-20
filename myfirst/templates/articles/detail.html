@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.article_title}}{%  endblock %}
+
+{% block content %}
+
+
+<h2 class="ml-3">{{article.article_title}}</h2>
+<div class="ml-3">{{article.article_text}}</div><br>
+<em class="ml-3">{{article.pub_date}}</em>
+
+
+<hr>
+
+{% if latest_comments_list %}
+	{% for c in latest_comments_list %}
+	<p>
+		<div class="div3 ml-3"><span class="badge badge-success">{{c.author_name}}</span></div>
+		<div class="div4 ml-3"><p>{{c.comment_text}}</p></div>
+
+	</p>
+	{% endfor %}
+
+{% else %}
+<div class="ml-3">Комментарий не найдены! Станьте первым.</div>
+{% endif %}
+
+<hr>
+
+
+<form action="{% url 'blog:leave_comment' article.id %}" method="POST">
+
+	{% csrf_token %}
+
+	<div class="div2 ml-3"><input type="text" required placeholder="Ваше имя" name="name"></div>
+	<div class="div ml-3"><textarea name="text" required="" placeholder="Текст комментария" cols="50" rows="6"></textarea></div><br>
+
+	<div class="div5 ml-3"><button type="submit" class="btn btn-primary">Оставить комментарий</button></div>
+</form>
+
+
+{% endblock %}
