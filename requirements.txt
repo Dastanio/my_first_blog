@@ -1,5 +1,5 @@
 asgiref==3.2.7
-Django==2.2.12
+Django==2.2.20
 django-grappelli==2.14.2
 pytz==2020.1
 sqlparse==0.3.1
